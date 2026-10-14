@@ -2,13 +2,8 @@
   "name": "read-learn",
   "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "setup": "npx cap add android && npx cap sync android",
-    "sync": "npx cap sync android",
-    "open": "npx cap open android",
-    "apk": "cd android && ./gradlew assembleDebug"
-  },
   "dependencies": {
+    "@capacitor-community/speech-recognition": "^6.0.0",
     "@capacitor/android": "^6.0.0",
     "@capacitor/core": "^6.0.0"
   },
