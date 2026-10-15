@@ -2,6 +2,11 @@
 <html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Read &amp; Learn</title>
+<script>
+window.__rep=function(m){try{var d=document.getElementById("errbar");if(!d){d=document.createElement("div");d.id="errbar";d.style.cssText="position:fixed;left:0;right:0;top:0;z-index:99;background:#b00020;color:#fff;font:12px/1.4 monospace;padding:8px 10px;white-space:pre-wrap;max-height:35vh;overflow:auto";d.onclick=function(){d.remove()};(document.body||document.documentElement).appendChild(d)}d.textContent+=m+"\n"}catch(x){}};
+window.addEventListener("error",function(e){__rep("ERRO: "+e.message+" ("+(e.lineno||"?")+":"+(e.colno||"?")+")")});
+window.addEventListener("unhandledrejection",function(e){__rep("PROMISE: "+(e.reason&&e.reason.message||e.reason))});
+</script>
 <style>
 :root{--bg:#fafaf7;--sf:#fff;--tx:#1d1d1b;--mu:#6b6b66;--ac:#2f6fed;--hl:#ffe08a;--bd:#e4e4de;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161616;--sf:#222;--tx:#f0f0ec;--mu:#9a9a94;--ac:#6b9bff;--hl:#7a5c00;--bd:#383835}}
@@ -82,7 +87,7 @@ html[data-motion="off"] *{animation:none!important;transition:none!important}
 <div class="top"><button class="ib" id="back" hidden aria-label="Voltar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></button><div class="logo" id="logo"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></div><h1 id="ttl">Read &amp; Learn</h1><button class="ib" id="menuBtn" aria-label="Menu"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button></div>
 <div id="login" hidden><div class="logo"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></div><h2>Bem-vindo!</h2><p class="mu" style="margin:0">Entre para guardar seu progresso</p><input id="nm" placeholder="Seu nome" autocomplete="name"><button class="btn pri big" id="enter">Entrar</button><button class="btn big" id="guest">Continuar sem conta</button></div>
 <div id="home" hidden><p class="hi" id="hi"></p><button class="btn pri big" id="start"><svg class="ic f" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Iniciar prática</button><button class="btn big" id="resumeBtn" hidden><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Continuar de onde parou</span><small id="rs"></small></button><div id="lst" hidden><h2 id="listH">Escolha um texto</h2><div id="list"></div></div></div>
-<div id="scrim" hidden></div><aside id="drawer"><h3 id="dn"></h3><button data-m="home"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Início</span></button><button data-m="theme"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg>Tema claro/escuro</span></button><button data-m="motion"><span><svg class="ic f" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Animações: <b id="mo">ligadas</b></span></button><button data-m="out"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Sair</span></button><p class="mu" style="font-size:12px">Versão 7</p></aside>
+<div id="scrim" hidden></div><aside id="drawer"><h3 id="dn"></h3><button data-m="home"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Início</span></button><button data-m="theme"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg>Tema claro/escuro</span></button><button data-m="motion"><span><svg class="ic f" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Animações: <b id="mo">ligadas</b></span></button><button data-m="out"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Sair</span></button><p class="mu" style="font-size:12px">Versão 8</p></aside>
 <nav><button data-t="read" class="on"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></i>Ler</button><button data-t="words"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></i><span>Palavras<b id="cnt"></b></span></button><button data-t="cards"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="14" height="14" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/></svg></i>Flashcards</button><button data-t="pron"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i>Pronúncia</button></nav>
 <div id="study" hidden><select id="sel" hidden></select>
 <section id="read"><div class="txt" id="txt"></div>
@@ -125,7 +130,7 @@ function render(){
  $("#words").querySelectorAll(".x").forEach(b=>b.onclick=()=>{delete saved[cur.id][b.dataset.w];persist();render()});
  const keys=Object.keys(ws);
  if(!keys.length)$("#cards").innerHTML='<p class="mu">Salve palavras ou expressões do texto para gerar flashcards.</p>';
- else cardsView(ws,keys);pronView()
+ else{try{cardsView(ws,keys)}catch(e){__rep("cards: "+e.message)}}try{pronView()}catch(e){__rep("pron: "+e.message)}
 }
 function openPop(k,s){
  if(!k)return;$("#hint").style.display="none";if(tts&&playing&&!held){tts.pause();held=true;resume=true}
@@ -133,7 +138,7 @@ function openPop(k,s){
  const has=saved[cur.id]&&saved[cur.id][k];$("#save").innerHTML=has?ico("check")+"Salva":ico("bookmark")+"Salvar";$("#save").disabled=!pt||!!has;$("#pop").style.display="block"}
 $("#save").onclick=()=>{(saved[cur.id]=saved[cur.id]||{})[sel.k]=sel.pt;persist();$("#save").innerHTML=ico("check")+"Salva";$("#save").disabled=true;markSaved()};
 $("#cont").onclick=()=>{$("#pop").style.display="none";spans.forEach(s=>s.classList.remove("sel"));if(resume&&tts){tts.resume();held=false;resume=false}};
-function stopAll(){stopRec();if(tts)tts.cancel();clearInterval(est);held=false;playing=false;resume=false;$("#play").innerHTML=ico("play")+"Ouvir";spans.forEach(s=>s.classList.remove("cur"));$("#pop").style.display="none"}
+function stopAll(){stopRec();try{if(tts)tts.cancel()}catch(e){}clearInterval(est);held=false;playing=false;resume=false;$("#play").innerHTML=ico("play")+"Ouvir";spans.forEach(s=>s.classList.remove("cur"));$("#pop").style.display="none"}
 $("#stop").onclick=stopAll;
 $("#play").onclick=()=>{
  if(!tts){alert("Seu navegador não suporta leitura em voz alta.");return}
@@ -151,7 +156,7 @@ function show(s){["login","home","study"].forEach(x=>$("#"+x).hidden=x!==s);$("n
 function home(){$("#lst").hidden=true;$("#hi").textContent="Seja bem-vindo(a)"+(user&&user.name?", "+user.name:"");const lt=TEXTS.find(t=>t.id===last);$("#resumeBtn").hidden=!lt;if(lt)$("#rs").textContent=lt.title;
  $("#list").innerHTML=TEXTS.map(t=>{const n=Object.keys(saved[t.id]||{}).length;return `<button class="txi" data-id="${t.id}"><b>${t.title}</b><small>${t.lv} · ${n} palavra${n===1?"":"s"} salva${n===1?"":"s"}</small></button>`}).join("");
  $("#list").querySelectorAll(".txi").forEach(b=>b.onclick=()=>openText(b.dataset.id))}
-function openText(id){cur=TEXTS.find(t=>t.id===id);last=id;st("rl_last",id);ci=0;pi=0;flip=false;stopAll();document.querySelectorAll("nav button").forEach((x,i)=>x.classList.toggle("on",i===0));["read","words","cards","pron"].forEach(s=>$("#"+s).hidden=s!=="read");render();show("study")}
+function openText(id){cur=TEXTS.find(t=>t.id===id);last=id;st("rl_last",id);ci=0;pi=0;flip=false;stopAll();document.querySelectorAll("nav button").forEach((x,i)=>x.classList.toggle("on",i===0));["read","words","cards","pron"].forEach(s=>$("#"+s).hidden=s!=="read");try{render()}catch(e){__rep("render: "+e.message)}show("study")}
 $("#start").onclick=()=>{$("#lst").hidden=false;$("#listH").scrollIntoView({behavior:"smooth"})};
 $("#resumeBtn").onclick=()=>openText(last);$("#back").onclick=()=>show("home");
 $("#enter").onclick=()=>{const n=$("#nm").value.trim();if(!n){$("#nm").focus();return}user={name:n};st("rl_user",JSON.stringify(user));show("home")};
@@ -203,7 +208,7 @@ function ans(e,good){if(rv.lock)return;rv.lock=1;const f=!rv.seen[e];rv.seen[e]=
 let pi=0,pr={},listening=false,rec=null;
 P.mic='<rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>';
 const SRc=window.SpeechRecognition||window.webkitSpeechRecognition;
-const NSR=(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform())?Capacitor.registerPlugin("SpeechRecognition"):null;
+let NSR=null;try{if(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform())NSR=Capacitor.registerPlugin("SpeechRecognition")}catch(e){__rep("plugin: "+e.message)}
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const sents=()=>cur.body.match(/[^.!?]+[.!?]*/g).map(t=>t.trim());
 function say(t){if(!tts)return;tts.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.85;tts.speak(u)}
