@@ -87,7 +87,7 @@ html[data-motion="off"] *{animation:none!important;transition:none!important}
 <div class="top"><button class="ib" id="back" hidden aria-label="Voltar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></button><div class="logo" id="logo"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></div><h1 id="ttl">Read &amp; Learn</h1><button class="ib" id="menuBtn" aria-label="Menu"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button></div>
 <div id="login" hidden><div class="logo"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></div><h2>Bem-vindo!</h2><p class="mu" style="margin:0">Entre para guardar seu progresso</p><input id="nm" placeholder="Seu nome" autocomplete="name"><button class="btn pri big" id="enter">Entrar</button><button class="btn big" id="guest">Continuar sem conta</button></div>
 <div id="home" hidden><p class="hi" id="hi"></p><button class="btn pri big" id="start"><svg class="ic f" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Iniciar prática</button><button class="btn big" id="resumeBtn" hidden><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Continuar de onde parou</span><small id="rs"></small></button><div id="lst" hidden><h2 id="listH">Escolha um texto</h2><div id="list"></div></div></div>
-<div id="scrim" hidden></div><aside id="drawer"><h3 id="dn"></h3><button data-m="home"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Início</span></button><button data-m="theme"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg>Tema claro/escuro</span></button><button data-m="motion"><span><svg class="ic f" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Animações: <b id="mo">ligadas</b></span></button><button data-m="out"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Sair</span></button><p class="mu" style="font-size:12px">Versão 8</p></aside>
+<div id="scrim" hidden></div><aside id="drawer"><h3 id="dn"></h3><button data-m="home"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Início</span></button><button data-m="theme"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg>Tema claro/escuro</span></button><button data-m="motion"><span><svg class="ic f" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Animações: <b id="mo">ligadas</b></span></button><button data-m="out"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Sair</span></button><p class="mu" style="font-size:12px">Versão 9</p></aside>
 <nav><button data-t="read" class="on"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></i>Ler</button><button data-t="words"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></i><span>Palavras<b id="cnt"></b></span></button><button data-t="cards"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="14" height="14" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/></svg></i>Flashcards</button><button data-t="pron"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i>Pronúncia</button></nav>
 <div id="study" hidden><select id="sel" hidden></select>
 <section id="read"><div class="txt" id="txt"></div>
@@ -111,10 +111,13 @@ try{saved=JSON.parse(localStorage.getItem("rl_saved")||"{}")}catch(e){}
 const persist=()=>{try{localStorage.setItem("rl_saved",JSON.stringify(saved))}catch(e){}};
 const clean=w=>w.toLowerCase().replace(/[^a-z']/g,"");
 const tts=window.speechSynthesis;
+const NTX=()=>{try{return(window.Capacitor&&Capacitor.Plugins&&Capacitor.Plugins.TextToSpeech)||null}catch(e){return null}};
+const useN=()=>!tts&&!!NTX();
+let nTok=0,pauseIdx=0,startIdx=0;
 let est=null,gotB=false,acc=0,held=false,K=80;try{K=+localStorage.getItem("rl_k")||80}catch(e){}
 const wts=()=>cur.body.split(" ").map(t=>t.length+(/[.,;!?]$/.test(t)?5:0));
-function startEst(){clearInterval(est);acc=0;let last=performance.now();const W=wts();
- est=setInterval(()=>{const n=performance.now();if(tts.paused||held){last=n;return}acc+=n-last;last=n;let c=0,i=0;for(;i<W.length-1;i++){c+=W[i]*K;if(acc<c)break}spans.forEach((s,j)=>s.classList.toggle("cur",j===i))},60)}
+function startEst(from){clearInterval(est);const W=wts();acc=0;for(let q=0;q<(from||0);q++)acc+=W[q]*K;let last=performance.now();
+ est=setInterval(()=>{const n=performance.now();if((tts&&tts.paused)||held){last=n;return}acc+=n-last;last=n;let c=0,i=0;for(;i<W.length-1;i++){c+=W[i]*K;if(acc<c)break}spans.forEach((s,j)=>s.classList.toggle("cur",j===i))},60)}
 function calib(){if(gotB||!acc)return;const k=acc/wts().reduce((a,b)=>a+b,0);if(k>30&&k<250){K=k;try{localStorage.setItem("rl_k",k)}catch(e){}}}
 TEXTS.forEach(t=>$("#sel").add(new Option(t.title,t.id)));
 $("#sel").onchange=e=>{cur=TEXTS.find(t=>t.id===e.target.value);ci=0;flip=false;stopAll();render()};
@@ -133,18 +136,18 @@ function render(){
  else{try{cardsView(ws,keys)}catch(e){__rep("cards: "+e.message)}}try{pronView()}catch(e){__rep("pron: "+e.message)}
 }
 function openPop(k,s){
- if(!k)return;$("#hint").style.display="none";if(tts&&playing&&!held){tts.pause();held=true;resume=true}
+ if(!k)return;$("#hint").style.display="none";if((tts||useN())&&playing&&!held){doPause();resume=true}
  const pt=cur.d[k];sel={k,pt};$("#pw").textContent=k;$("#pt").textContent=pt||"Tradução indisponível";
  const has=saved[cur.id]&&saved[cur.id][k];$("#save").innerHTML=has?ico("check")+"Salva":ico("bookmark")+"Salvar";$("#save").disabled=!pt||!!has;$("#pop").style.display="block"}
 $("#save").onclick=()=>{(saved[cur.id]=saved[cur.id]||{})[sel.k]=sel.pt;persist();$("#save").innerHTML=ico("check")+"Salva";$("#save").disabled=true;markSaved()};
-$("#cont").onclick=()=>{$("#pop").style.display="none";spans.forEach(s=>s.classList.remove("sel"));if(resume&&tts){tts.resume();held=false;resume=false}};
-function stopAll(){stopRec();try{if(tts)tts.cancel()}catch(e){}clearInterval(est);held=false;playing=false;resume=false;$("#play").innerHTML=ico("play")+"Ouvir";spans.forEach(s=>s.classList.remove("cur"));$("#pop").style.display="none"}
+$("#cont").onclick=()=>{$("#pop").style.display="none";spans.forEach(s=>s.classList.remove("sel"));if(resume){doResume();resume=false}};
+function stopAll(){stopRec();doStop();clearInterval(est);held=false;playing=false;resume=false;$("#play").innerHTML=ico("play")+"Ouvir";spans.forEach(s=>s.classList.remove("cur"));$("#pop").style.display="none"}
 $("#stop").onclick=stopAll;
 $("#play").onclick=()=>{
- if(!tts){alert("Seu navegador não suporta leitura em voz alta.");return}
- if(playing&&!held){tts.pause();held=true;$("#play").innerHTML=ico("play")+"Continuar";return}
- if(playing&&held){tts.resume();held=false;$("#play").innerHTML=ico("pause")+"Pausar";return}
- const u=new SpeechSynthesisUtterance(cur.body);u.lang="en-US";u.rate=.85;
+ if(!tts&&!NTX()){alert("Seu navegador não suporta leitura em voz alta.");return}
+ if(playing&&!held){doPause();$("#play").innerHTML=ico("play")+"Continuar";return}
+ if(playing&&held){doResume();$("#play").innerHTML=ico("pause")+"Pausar";return}
+ if(useN()){nPlay(0);return}const u=new SpeechSynthesisUtterance(cur.body);u.lang="en-US";u.rate=.85;
  u.onboundary=e=>{if(e.name&&e.name!=="word")return;gotB=true;clearInterval(est);let i=offs.findIndex((o,n)=>e.charIndex>=o&&(n===offs.length-1||e.charIndex<offs[n+1]));spans.forEach((s,n)=>s.classList.toggle("cur",n===i))};
  u.onend=()=>{clearInterval(est);calib();held=false;playing=false;$("#play").innerHTML=ico("play")+"Ouvir";spans.forEach(s=>s.classList.remove("cur"))};
  playing=true;$("#play").innerHTML=ico("pause")+"Pausar";u.onstart=()=>{acc=0};gotB=false;startEst();tts.speak(u)};
@@ -176,7 +179,7 @@ function tr(a,b){const k=[];for(let i=a;i<=b;i++)k.push(clean(spans[i].textConte
  const parts=k.map(w=>cur.d[w]).filter(Boolean).map(p=>p.split(" / ")[0]);
  return{key,pt:parts.length?parts.join(" + "):null,lit:true}}
 function openSel(a,b){a=Math.max(0,a);b=Math.min(spans.length-1,b);sa=a;sb=b;$("#hint").style.display="none";
- if(tts&&playing&&!held){tts.pause();held=true;resume=true}
+ if((tts||useN())&&playing&&!held){doPause();resume=true}
  spans.forEach((s,i)=>s.classList.toggle("sel",i>=a&&i<=b));
  const r=tr(a,b);if(!r.key)return;sel={k:r.key,pt:r.pt};
  $("#pw").textContent=r.key;$("#pt").textContent=r.pt?(r.lit?r.pt+" (literal)":r.pt):"Tradução indisponível";
@@ -208,10 +211,10 @@ function ans(e,good){if(rv.lock)return;rv.lock=1;const f=!rv.seen[e];rv.seen[e]=
 let pi=0,pr={},listening=false,rec=null;
 P.mic='<rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>';
 const SRc=window.SpeechRecognition||window.webkitSpeechRecognition;
-let NSR=null;try{if(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform())NSR=Capacitor.registerPlugin("SpeechRecognition")}catch(e){__rep("plugin: "+e.message)}
+let NSR=null;try{NSR=(window.Capacitor&&Capacitor.Plugins&&Capacitor.Plugins.SpeechRecognition)||null}catch(e){__rep("plugin: "+e.message)}
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const sents=()=>cur.body.match(/[^.!?]+[.!?]*/g).map(t=>t.trim());
-function say(t){if(!tts)return;tts.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.85;tts.speak(u)}
+function say(t){if(useN()){try{NTX().stop();NTX().speak({text:t,lang:"en-US",rate:.85,pitch:1,volume:1,category:"playback"}).catch(()=>{})}catch(e){}return}if(!tts)return;tts.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.85;tts.speak(u)}
 function lev(a,b){const d=Array.from({length:a.length+1},(_,i)=>[i]);for(let j=1;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[a.length][b.length]}
 function grade(sent,said){const T=sent.split(" ").map(clean),H=said.split(/\s+/).map(clean).filter(Boolean),n=T.length,m=H.length;
  const c=(i,j)=>T[i-1]===H[j-1]?0:(T[i-1].length>=4&&H[j-1].length>=4&&lev(T[i-1],H[j-1])<=1?4:10);
@@ -233,7 +236,7 @@ function micUI(){const b=$("#mic");if(!b)return;b.classList.toggle("rec",listeni
 async function toggleRec(sent){
  if(listening){stopRec();return}
  if(!NSR&&!SRc){pmsg("Este navegador não suporta reconhecimento de voz. Use o Chrome ou o app instalado.");return}
- if(tts)tts.cancel();listening=true;micUI();pmsg("Ouvindo… leia a frase em voz alta");
+ doStop();listening=true;micUI();pmsg("Ouvindo… leia a frase em voz alta");
  let t="",err=null;try{t=NSR?await listenNative():await listenWeb(x=>pmsg("“"+x.trim()+"”"))}catch(e){err=e}
  listening=false;
  if(err){if(err!=="aborted"){micUI();pmsg(errTxt(err))}else micUI();return}
@@ -247,5 +250,14 @@ function pronView(){const S=sents();pi=Math.min(pi,S.length-1);const sent=S[pi],
  $("#pron").querySelectorAll(".pw").forEach(x=>x.onclick=()=>say(x.dataset.w));
  $("#pl").onclick=()=>say(sent);$("#mic").onclick=()=>toggleRec(sent);
  $("#pp").onclick=()=>{stopRec();pi=Math.max(0,pi-1);pronView()};$("#pn").onclick=()=>{stopRec();pi=Math.min(S.length-1,pi+1);pronView()}}
+function curIdx(){const W=wts();let c=0,i=0;for(;i<W.length-1;i++){c+=W[i]*K;if(acc<c)break}return i}
+function nPlay(from){const words=cur.body.split(" ");playing=true;held=false;startIdx=from;$("#play").innerHTML=ico("pause")+"Pausar";gotB=false;startEst(from);
+ const tk=++nTok;const fin=()=>{if(tk===nTok)nEnd()};
+ try{NTX().speak({text:words.slice(from).join(" "),lang:"en-US",rate:.9,pitch:1,volume:1,category:"playback"}).then(fin).catch(fin)}catch(e){__rep("tts: "+e.message);fin()}}
+function nEnd(){clearInterval(est);if(startIdx===0)calib();held=false;playing=false;$("#play").innerHTML=ico("play")+"Ouvir";spans.forEach(s=>s.classList.remove("cur"))}
+function nPause(){pauseIdx=curIdx();nTok++;try{NTX().stop()}catch(e){}held=true}
+function doPause(){if(useN())nPause();else{tts.pause();held=true}}
+function doResume(){if(useN())nPlay(pauseIdx);else{tts.resume();held=false}}
+function doStop(){nTok++;try{if(useN())NTX().stop();else if(tts)tts.cancel()}catch(e){}}
 render();show(user?"home":"login");
 </script></body></html>
