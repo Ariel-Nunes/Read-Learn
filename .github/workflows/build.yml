@@ -17,6 +17,7 @@ jobs:
       - run: npx cap add android
       - run: sed -i 's#<application#<uses-permission android:name="android.permission.RECORD_AUDIO" /><queries><intent><action android:name="android.speech.RecognitionService" /></intent><intent><action android:name="android.intent.action.TTS_SERVICE" /></intent></queries><application#' android/app/src/main/AndroidManifest.xml
       - run: npx cap sync android
+      - run: mkdir -p ~/.android && cp debug.keystore ~/.android/debug.keystore
       - run: cd android && chmod +x gradlew && ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
         with:
