@@ -12,6 +12,15 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+      - run: npm install --no-save playwright
+      - run: npx playwright install --with-deps chromium
+      - run: node app.test.js
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: capturas-de-falha
+          path: falha-*.png
+          if-no-files-found: ignore
       - run: mkdir -p www && cp index.html www/index.html
       - run: npm install
       - run: npx cap add android
