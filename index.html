@@ -73,6 +73,16 @@ nav button{position:relative}nav button i{display:grid;transition:transform .25s
 @keyframes flip{from{transform:perspective(800px) rotateY(90deg);opacity:.4}}.card{animation:flip .32s ease}.card.bk{background:var(--ac);border-color:var(--ac);color:#111}.card.bk small{color:#111}
 #drawer{box-shadow:-10px 0 40px rgba(0,0,0,.2)}#scrim{backdrop-filter:blur(2px)}
 html[data-motion="off"] *{animation:none!important;transition:none!important}
+.dxrow{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px 0}.dxrow .dxplay{margin:0}
+body.kb nav,body.kb #mp,body.kb #rp{display:none!important}
+body.kb main{padding-bottom:24px!important}
+body.kb .dxplay{width:68px;height:68px}body.kb .dxplay .ic{width:30px;height:30px}
+body.kb .dxm{min-height:24px;margin:4px 0}body.kb #dxIn{margin:4px 0 8px;padding:12px}
+.dxc{text-align:center}.dxplay{width:92px;height:92px;border-radius:50%;border:0;background:var(--ac);color:#111;display:grid;place-items:center;margin:6px auto 4px;cursor:pointer;box-shadow:0 8px 22px color-mix(in srgb,var(--ac) 35%,transparent)}.dxplay .ic{width:38px;height:38px;margin:0}.dxplay:active{transform:scale(.96)}
+.dxm{min-height:44px;margin:10px 0 4px}
+#dxIn{width:100%;padding:16px;font-size:24px;text-align:center;border-radius:16px;border:2px solid var(--bd);background:var(--sf);color:var(--tx);margin:6px 0 12px;letter-spacing:.5px;font-family:inherit}#dxIn.bad{border-color:#dc3545;animation:shake .42s}#dxIn.ok{border-color:#2e9e5b}
+.dxw{font-size:36px;font-weight:700;margin:12px 0 6px}
+.opts{display:grid;gap:10px;margin:14px 0}.opt{padding:16px;font:inherit;font-size:17px;border-radius:16px;border:2px solid var(--bd);background:var(--sf);color:var(--tx);text-align:left;cursor:pointer;min-height:56px}.opt.ok{border-color:#2e9e5b;background:rgba(46,158,91,.16)}.opt.bad{border-color:#dc3545;background:rgba(220,53,69,.12);opacity:.75}
 html,body,main{overflow-x:clip}
 .top h1{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ib{min-width:48px;min-height:48px;display:grid;place-items:center;padding:0}.top{min-height:48px}
@@ -143,14 +153,14 @@ nav button.bump i{animation:bump .45s ease}@keyframes bump{40%{transform:scale(1
 <div class="top"><button class="ib" id="back" hidden aria-label="Voltar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></button><div class="logo" id="logo"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></div><h1 id="ttl">Read &amp; Learn</h1><button class="ib" id="menuBtn" aria-label="Menu"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button></div>
 <div id="login" hidden><div class="logo"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></div><h2>Bem-vindo!</h2><p class="mu" style="margin:0">Entre para guardar seu progresso</p><input id="nm" placeholder="Seu nome" autocomplete="name"><button class="btn pri big" id="enter">Entrar</button><button class="btn big" id="guest">Continuar sem conta</button></div>
 <div id="home" hidden><p class="hi" id="hi"></p><div class="goal" id="goal" role="button" aria-label="Meta diária"><svg class="ring" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" class="rb"/><circle cx="24" cy="24" r="20" class="rf" id="rf"/></svg><div class="gt"><b id="gtt"></b><small id="gts"></small></div><div class="stk" id="stk"></div></div><div id="cont2"></div><div id="rev"></div><div id="bkr"></div><div id="lst"><h2 id="listH">Iniciar prática</h2><div id="lv" class="lvg"></div><div id="list" class="car"></div></div></div>
-<div id="decks" hidden></div><div id="drill" hidden></div><div id="done" hidden></div><div id="tour" hidden><div class="tin"><div id="tart"></div><h2 id="tt"></h2><p id="tp"></p><div class="dots" id="td"></div><div class="row"><button class="btn" id="tskip">Pular</button><button class="btn pri" id="tnext">Próximo</button></div></div></div><div id="stats" hidden></div><div id="backup" hidden><p class="mu" style="text-align:left;margin:0 0 14px">Guarde suas palavras, progresso, meta e ajustes. Faça isso antes de desinstalar o app.</p><button class="btn pri big" id="bkCopy">Copiar backup</button><button class="btn big" id="bkFile">Salvar como arquivo</button><h2>Restaurar</h2><textarea id="bkTxt" placeholder="Cole aqui o texto do backup"></textarea><button class="btn big" id="bkImp">Restaurar do texto colado</button><label class="btn big" style="display:block;text-align:center">Escolher arquivo de backup<input type="file" id="bkIn" accept=".json,application/json,text/plain" hidden></label><p class="mu" id="bkMsg" style="text-align:left"></p></div><div id="scrim" hidden></div><aside id="drawer"><h3 id="dn"></h3><p class="gh">Estudo</p><button data-m="home"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Início</span></button><button data-m="stats"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Meu progresso</span></button><button data-m="help"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/></svg>Como usar</span></button><p class="gh">Configurações</p><button data-m="theme"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg>Tema claro/escuro</span></button><button data-m="motion"><span><svg class="ic f" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Animações: <b id="mo">ligadas</b></span></button><div class="set"><span>Tamanho da letra</span><div class="seg" id="fsSeg"><button data-fs="18">P</button><button data-fs="20">M</button><button data-fs="24">G</button></div></div><div class="set"><span>Fonte do texto</span><div class="seg" id="ffSeg"><button data-ff="serif">Com serifa</button><button data-ff="sans">Sem serifa</button></div></div><div class="set"><span>Lembrete diário</span><div class="seg" id="remSeg"><button data-r="0">Desligado</button><button data-r="1">Ligado</button></div><select id="remH" aria-label="Horário do lembrete"></select></div><button data-m="backup"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Backup e restauração</span></button><div class="sep"></div><button data-m="out"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Sair</span></button><p class="mu" style="font-size:12px">Versão 25</p></aside>
-<nav><button data-t="read" class="on"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></i>Ler</button><button data-t="words"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></i><span>Palavras<b id="cnt"></b></span></button><button data-t="cards"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="14" height="14" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/></svg></i>Flashcards<b id="fcnt"></b></button><button data-t="pron"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i>Pronúncia</button></nav>
+<div id="decks" hidden></div><div id="drill" hidden></div><div id="done" hidden></div><div id="tour" hidden><div class="tin"><div id="tart"></div><h2 id="tt"></h2><p id="tp"></p><div class="dots" id="td"></div><div class="row"><button class="btn" id="tskip">Pular</button><button class="btn pri" id="tnext">Próximo</button></div></div></div><div id="stats" hidden></div><div id="backup" hidden><p class="mu" style="text-align:left;margin:0 0 14px">Guarde suas palavras, progresso, meta e ajustes. Faça isso antes de desinstalar o app.</p><button class="btn pri big" id="bkCopy">Copiar backup</button><button class="btn big" id="bkFile">Salvar como arquivo</button><h2>Restaurar</h2><textarea id="bkTxt" placeholder="Cole aqui o texto do backup"></textarea><button class="btn big" id="bkImp">Restaurar do texto colado</button><label class="btn big" style="display:block;text-align:center">Escolher arquivo de backup<input type="file" id="bkIn" accept=".json,application/json,text/plain" hidden></label><p class="mu" id="bkMsg" style="text-align:left"></p></div><div id="scrim" hidden></div><aside id="drawer"><h3 id="dn"></h3><p class="gh">Estudo</p><button data-m="home"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Início</span></button><button data-m="stats"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Meu progresso</span></button><button data-m="help"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/></svg>Como usar</span></button><p class="gh">Configurações</p><button data-m="theme"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg>Tema claro/escuro</span></button><button data-m="motion"><span><svg class="ic f" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Animações: <b id="mo">ligadas</b></span></button><div class="set"><span>Tamanho da letra</span><div class="seg" id="fsSeg"><button data-fs="18">P</button><button data-fs="20">M</button><button data-fs="24">G</button></div></div><div class="set"><span>Fonte do texto</span><div class="seg" id="ffSeg"><button data-ff="serif">Com serifa</button><button data-ff="sans">Sem serifa</button></div></div><div class="set"><span>Lembrete diário</span><div class="seg" id="remSeg"><button data-r="0">Desligado</button><button data-r="1">Ligado</button></div><select id="remH" aria-label="Horário do lembrete"></select></div><button data-m="backup"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Backup e restauração</span></button><div class="sep"></div><button data-m="out"><span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Sair</span></button><p class="mu" style="font-size:12px">Versão 27</p></aside>
+<nav><button data-t="read" class="on"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></i>Ler</button><button data-t="words"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></i><span>Palavras<b id="cnt"></b></span></button><button data-t="cards"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="14" height="14" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/></svg></i>Flashcards<b id="fcnt"></b></button><button data-t="pron"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i>Pronúncia</button><button data-t="dict"><i><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></i>Ditado</button></nav>
 <div id="study" hidden><select id="sel" hidden></select>
 <section id="read"><div class="illw" id="illw"><div class="ill" id="ill"></div><button id="illT"></button></div><div class="txt" id="txt"></div>
 <div class="ctl"><button class="btn pri" id="play"><svg class="ic f" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Ouvir</button><button class="btn" id="stop" aria-label="Parar"><svg class="ic f" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2.5"/></svg></button></div>
 <p class="mu" id="hint">Toque ou arraste sobre as palavras para traduzir</p><button class="btn big" id="finBtn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Concluir texto</button></section>
 <section id="words" hidden></section>
-<section id="cards" hidden></section><section id="pron" hidden></section></div>
+<section id="cards" hidden></section><section id="pron" hidden></section><section id="dict" hidden></section></div>
 </main><div id="rp" hidden><i id="rpFill"></i></div><div id="mp" hidden><button id="mpPlay" aria-label="Ouvir ou pausar"></button><div id="mpBar" role="slider" aria-label="Posição da narração"><i id="mpFill"></i></div><button id="mpSpd" aria-label="Velocidade"></button></div>
 <div id="pop"><div class="in"><h3 id="pw"></h3><p id="pt"></p><div class="row" style="margin-bottom:8px"><button class="btn" id="eL" style="padding:12px 8px;font-size:14px">+ palavra antes</button><button class="btn" id="eR" style="padding:12px 8px;font-size:14px">+ palavra depois</button></div><div class="row"><button class="btn pri" id="save">Salvar</button><button class="btn" id="cont">Continuar<svg class="ic f" style="margin:0 0 0 .45em" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></button></div></div></div>
 <script>
@@ -183,7 +193,7 @@ function startEst(from){clearInterval(est);const W=wts();acc=0;for(let q=0;q<(fr
 function calib(){if(gotB||!acc)return;const k=acc/wts().reduce((a,b)=>a+b,0)*spd;if(k>30&&k<250){K=k;try{localStorage.setItem("rl_k",k)}catch(e){}}}
 TEXTS.forEach(t=>$("#sel").add(new Option(t.title,t.id)));
 $("#sel").onchange=e=>{cur=TEXTS.find(t=>t.id===e.target.value);ci=0;flip=false;stopAll();render()};
-document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x===b));["read","words","cards","pron"].forEach(s=>$("#"+s).hidden=s!==b.dataset.t);if(b.dataset.t!=="read")stopAll();render()});
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x===b));["read","words","cards","pron","dict"].forEach(s=>$("#"+s).hidden=s!==b.dataset.t);if(b.dataset.t!=="read")stopAll();render()});
 function render(){
  const box=$("#txt");
  if(box.dataset.id!==cur.id){
@@ -196,6 +206,7 @@ function render(){
  markSaved();updFc();const ws=saved[cur.id]||{};$("#cnt").textContent=Object.keys(ws).length||"";
  if(!$("#words").hidden)wordsView();
  if(!$("#pron").hidden){try{pronView()}catch(e){__rep("pron: "+e.message)}}
+ if(!$("#dict").hidden){try{dictView()}catch(e){__rep("dict: "+e.message)}}
 }
 function openPop(k,s){
  if(!k)return;$("#hint").style.display="none";if((tts||useN())&&playing&&!held){doPause();resume=true}
@@ -223,7 +234,7 @@ function show(s){if(scr==="study"&&s!=="study")saveProg();
  $("nav").style.display=s==="login"?"none":"flex";
  if(s==="home"||s==="login")inText=false;
  if(s==="home"||s==="done"||s==="backup"||s==="stats")setTab("");if(s==="decks"||s==="drill")setTab("cards");
- if(s==="study"){inText=true;setTab(["read","words","pron"].find(x=>!$("#"+x).hidden)||"read")}
+ if(s==="study"){inText=true;setTab(["read","words","pron","dict"].find(x=>!$("#"+x).hidden)||"read")}
  $("#back").hidden=!inner;$("#logo").hidden=inner;$("#menuBtn").hidden=s==="login";
  $("#ttl").textContent=s==="study"?cur.title:s==="decks"?"Meus flashcards":s==="drill"?"Treino":s==="done"?"Concluído":s==="backup"?"Backup":s==="stats"?"Meu progresso":"Read & Learn";
  if(s!=="drill")dueOnly=false;if(s!=="study")stopAll();if(s==="home")home();if(s==="decks")decksView();if(s==="done")doneView();if(s==="stats")statsView();
@@ -238,7 +249,7 @@ function drawList(){const cnt=l=>TEXTS.filter(t=>t.lv===l&&doneT[t.id]).length,t
  $("#list").querySelectorAll(".tc").forEach(b=>b.onclick=()=>openText(b.dataset.id))}
 function openText(id,res){cur=TEXTS.find(t=>t.id===id);sess=id;last=id;st("rl_last",id);recent=[id,...recent.filter(x=>x!==id)].slice(0,50);st("rl_recent",JSON.stringify(recent));ci=0;pi=0;flip=false;stopAll();
  const g=res&&prog[id],tab=g?g.tab:"read";if(g)pi=g.pi||0;
- ["read","words","cards","pron"].forEach(x=>$("#"+x).hidden=x!==tab);
+ ["read","words","cards","pron","dict"].forEach(x=>$("#"+x).hidden=x!==tab);
  try{render()}catch(e){__rep("render: "+e.message)}show("study");
  if(g&&tab==="read"&&g.w>0){const sp=spans[g.w];if(sp)setTimeout(()=>sp.scrollIntoView({block:"center"}),60)}}
 
@@ -322,7 +333,7 @@ const SRc=window.SpeechRecognition||window.webkitSpeechRecognition;
 let NSR=null;try{NSR=(window.Capacitor&&Capacitor.Plugins&&Capacitor.Plugins.SpeechRecognition)||null}catch(e){__rep("plugin: "+e.message)}
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const sents=()=>cur.body.match(/[^.!?]+[.!?]*/g).map(t=>t.trim());
-function say(t){if(useN()){try{NTX().stop();NTX().speak({text:t,lang:"en-US",rate:.85,pitch:1,volume:1,category:"playback"}).catch(()=>{})}catch(e){}return}if(!tts)return;tts.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.85;tts.speak(u)}
+function say(t,r){r=r||.85;if(useN()){try{NTX().stop();NTX().speak({text:t,lang:"en-US",rate:r,pitch:1,volume:1,category:"playback"}).catch(()=>{})}catch(e){}return}if(!tts)return;tts.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=r;tts.speak(u)}
 function lev(a,b){const d=Array.from({length:a.length+1},(_,i)=>[i]);for(let j=1;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[a.length][b.length]}
 function grade(sent,said){const T=sent.split(" ").map(clean),H=said.split(/\s+/).map(clean).filter(Boolean),n=T.length,m=H.length;
  const c=(i,j)=>T[i-1]===H[j-1]?0:(T[i-1].length>=4&&H[j-1].length>=4&&lev(T[i-1],H[j-1])<=1?4:10);
@@ -375,8 +386,8 @@ function navGo(t){
  if(t==="cards"){show("decks");return}
  if(!sess){if(scr!=="home")show("home");toast("Selecione um texto");$("#listH").scrollIntoView({behavior:"smooth"});return}
  const from=scr;cur=TEXTS.find(x=>x.id===sess)||cur;
- ["read","words","cards","pron"].forEach(x=>$("#"+x).hidden=x!==t);
- if(scr!=="study")show("study");setTab(t);if(t==="pron")stopAll();render();mpVis();
+ ["read","words","cards","pron","dict"].forEach(x=>$("#"+x).hidden=x!==t);
+ if(scr!=="study")show("study");setTab(t);if(t==="pron"||t==="dict")stopAll();render();mpVis();
  const g=prog[sess];if(t==="read"&&from!=="study"&&g&&g.w>0)setTimeout(()=>{const sp=spans[g.w];if(sp)sp.scrollIntoView({block:"center"})},60)}
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>navGo(b.dataset.t));
 let doneT={},prog={},exitArm=false;
@@ -384,7 +395,7 @@ try{doneT=JSON.parse(localStorage.getItem("rl_done")||"{}");prog=JSON.parse(loca
 function updFc(){const n=TEXTS.reduce((a,t)=>a+Object.keys(saved[t.id]||{}).length,0);const e=$("#fcnt");if(e)e.textContent=n||""}
 function fly(a,b){try{const r=a.getBoundingClientRect(),q=b.getBoundingClientRect(),d=document.createElement("i");d.className="cf";d.style.cssText=`left:${r.left+r.width/2}px;top:${r.top+r.height/2}px;width:14px;height:14px;margin:-7px;background:var(--ac);animation:none`;document.body.append(d);
  d.animate([{transform:"translate(0,0) scale(1)",opacity:1},{transform:`translate(${q.left+q.width/2-r.left-r.width/2}px,${q.top+q.height/2-r.top-r.height/2}px) scale(.4)`,opacity:.9}],{duration:600,easing:"cubic-bezier(.4,0,.7,.4)"}).onfinish=()=>{d.remove();b.classList.add("bump");setTimeout(()=>b.classList.remove("bump"),450)}}catch(e){}}
-function saveProg(){if(!cur||!inText)return;const sec=["read","words","pron"].find(x=>!$("#"+x).hidden)||"read";let w=spans.findIndex(x=>x.classList.contains("cur"));if(w<0)w=sa||0;prog[cur.id]={tab:sec,pi,w};try{localStorage.setItem("rl_prog",JSON.stringify(prog))}catch(e){}}
+function saveProg(){if(!cur||!inText)return;const sec=["read","words","pron","dict"].find(x=>!$("#"+x).hidden)||"read";let w=spans.findIndex(x=>x.classList.contains("cur"));if(w<0)w=sa||0;prog[cur.id]={tab:sec,pi,w};try{localStorage.setItem("rl_prog",JSON.stringify(prog))}catch(e){}}
 document.addEventListener("visibilitychange",()=>{if(document.hidden&&scr==="study")saveProg()});
 function finishText(){if(scr!=="study"||!cur)return;doneT[cur.id]=1;touchDay();try{localStorage.setItem("rl_done",JSON.stringify(doneT))}catch(e){}show("done")}
 function nextText(t){const i=TEXTS.findIndex(x=>x.id===t.id);return TEXTS[i+1]||null}
@@ -479,6 +490,43 @@ $("#mpSpd").onclick=()=>{spd=SPDS[(SPDS.indexOf(spd)+1)%SPDS.length]||1;st("rl_s
 function illApply(){const m=lsG("rl_ill")==="min";$("#illw").classList.toggle("min",m);$("#illT").innerHTML=ico(m?"chevd":"chevu");$("#illT").setAttribute("aria-label",m?"Mostrar imagem":"Recolher imagem")}
 $("#illT").onclick=()=>{st("rl_ill",lsG("rl_ill")==="min"?"":"min");illApply()};illApply();
 P.edit='<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>';
+const STOPW=new Set("that this with have from they were would there their about which could other after before because when what will been into than then them these those your each over only also just some more most much many very such while where being does said says still even here once upon under again since until both either every never always often himself herself itself myself".split(" "));
+let dx=null;
+const trOf=k=>String(dw(k)).split(" / ")[0];
+function dictPool(){const seen=new Set(),out=[];cur.body.split(" ").forEach(w=>{const k=clean(w);if(!k||seen.has(k))return;seen.add(k);if(!/^[a-z]+$/.test(k)||k.length<4||STOPW.has(k))return;const t=dw(k);if(!t||t==="nome próprio")return;out.push(k)});return out}
+function dictOpts(k){const right=trOf(k);const pool=[...new Set(Object.values(G).map(v=>v.split(" / ")[0]))].filter(v=>v&&v!==right&&v!=="nome próprio"&&!right.includes(v)&&!v.includes(right));const o=shuffle(pool).slice(0,3);o.push(right);return shuffle(o)}
+function dictStart(keep){const pool=dictPool(),used=keep&&dx&&dx.id===cur.id?dx.used:[];let fresh=pool.filter(k=>!used.includes(k));if(fresh.length<Math.min(10,pool.length))fresh=pool,used.length=0;
+ const q=shuffle(fresh.slice()).slice(0,10);dx={id:cur.id,q,i:0,step:"w",tries:0,wOk:0,tOk:0,tTry:0,played:false,miss:[],used:used.concat(q),opts:null,tok:0}}
+function dictNext(){dx.i++;dx.step="w";dx.tries=0;dx.tTry=0;dx.played=false;dx.opts=null;dx.tok++;dictView()}
+function dictView(){const box=$("#dict");
+ if(!dx||dx.id!==cur.id)dictStart(false);
+ if(!dx.q.length){box.innerHTML='<p class="mu">Este texto ainda não tem palavras suficientes para o exercício.</p>';return}
+ if(dx.i>=dx.q.length){const n=dx.q.length,m=dx.miss.length;
+  box.innerHTML=`<div class="card bk">Exercício concluído!<small>${esc(cur.title)}</small></div><div class="stats"><div><b>${dx.wOk}/${n}</b><span>escrita de primeira</span></div><div><b>${dx.tOk}/${n}</b><span>tradução de primeira</span></div></div>`+(m?`<button class="btn big" id="dxSv">${ico("bookmark")}Salvar as ${m} erradas nos flashcards</button>`:"")+'<button class="btn pri big" id="dxAgain">Praticar mais palavras</button>';
+  if(m)$("#dxSv").onclick=()=>{let c=0;dx.miss.forEach(k=>{const w=(saved[cur.id]=saved[cur.id]||{});if(!(k in w)){w[k]=trOf(k);c++}});persist();updFc();$("#dxSv").disabled=true;toast(c?c+" palavra"+(c===1?"":"s")+" nos flashcards":"Já estavam nos flashcards")};
+  $("#dxAgain").onclick=()=>{dictStart(true);dictView()};return}
+ const k=dx.q[dx.i],head=`<p class="mu" style="margin:0 0 6px">Palavra ${dx.i+1} de ${dx.q.length}</p>`;
+ if(dx.step==="w"){
+  box.innerHTML=head+`<div class="dxc"><div class="dxrow"><button class="dxplay" id="dxPlay" aria-label="Ouvir a palavra">${ico("play")}</button><button class="btn" id="dxSlow">Ouvir devagar</button></div><p class="mu dxm" id="dxMsg">Ouça e escreva a palavra em inglês.</p><input id="dxIn" type="text" autocapitalize="none" autocorrect="off" spellcheck="false" autocomplete="off" enterkeyhint="done" placeholder="Escreva aqui"><button class="btn pri big" id="dxChk">Verificar</button><button class="btn big" id="dxShow" hidden>Mostrar a resposta</button></div>`;
+  const inp=$("#dxIn"),msg=$("#dxMsg"),n=k.length;
+  const hint=()=>"Dica: tem "+n+" letras e começa com “"+k[0]+"”.";
+  const chk=()=>{const v=inp.value.trim().toLowerCase();if(!v)return;
+   if(v===k){inp.classList.remove("bad");inp.classList.add("ok");if(dx.tries===0)dx.wOk++;touchDay();dx.step="p";dx.opts=dictOpts(k);inp.blur();setTimeout(dictView,450);return}
+   dx.tries++;inp.classList.remove("bad");void inp.offsetWidth;inp.classList.add("bad");
+   msg.textContent=dx.tries===1?"Ainda não. Ouça de novo e tente outra vez.":hint();$("#dxShow").hidden=dx.tries<3;inp.select();if(navigator.vibrate)try{navigator.vibrate(30)}catch(e){}};
+  $("#dxChk").onclick=chk;inp.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();chk()}};
+  $("#dxPlay").onclick=()=>say(k);$("#dxSlow").onclick=()=>say(k,.55);
+  $("#dxShow").onclick=()=>{dx.tries=Math.max(dx.tries,3);inp.value=k;inp.classList.add("ok");msg.textContent="A palavra é “"+k+"”.";dx.gave=true;dx.step="p";dx.opts=dictOpts(k);inp.blur();setTimeout(dictView,1100)};
+  if(!dx.played){dx.played=true;setTimeout(()=>{say(k);inp.focus()},350)}
+  return}
+ const right=trOf(k),tok=dx.tok;
+ box.innerHTML=head+`<div class="dxc"><div class="dxw">${esc(k)}</div><button class="btn" id="dxHear">${ico("play")}Ouvir</button><p class="mu dxm" id="dxMsg">Qual é a tradução?</p></div><div class="opts">${dx.opts.map((o,i)=>`<button class="opt" data-i="${i}">${esc(o)}</button>`).join("")}</div><button class="btn pri big" id="dxNext" hidden>Próxima palavra</button>`;
+ $("#dxHear").onclick=()=>say(k);
+ box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{const o=dx.opts[+b.dataset.i];
+  if(o===right){box.querySelectorAll(".opt").forEach(x=>x.disabled=true);b.classList.add("ok");burst(b);try{navigator.vibrate(25)}catch(e){}
+   if(dx.tTry===0)dx.tOk++;if(dx.tries>0||dx.gave||dx.tTry>0)dx.miss.push(k);dx.gave=false;
+   $("#dxMsg").textContent="Certo!";const nx=$("#dxNext");nx.hidden=false;nx.textContent=dx.i+1>=dx.q.length?"Ver resultado":"Próxima palavra";nx.onclick=()=>{if(dx.tok===tok)dictNext()};setTimeout(()=>{if(dx.tok===tok&&scr==="study"&&!$("#dict").hidden)dictNext()},1500)}
+  else{dx.tTry++;b.classList.add("bad");b.disabled=true;$("#dxMsg").textContent="Não é essa. Tente outra opção."}})}
 let days={},pbest={},wAll=false,wq="",rem={on:false,h:20};
 try{days=JSON.parse(localStorage.getItem("rl_days")||"{}");pbest=JSON.parse(localStorage.getItem("rl_pbest")||"{}");Object.assign(rem,JSON.parse(localStorage.getItem("rl_rem")||"{}"))}catch(e){}
 function touchDay(){const t=dstr();if(!days[t]){days[t]=1;try{localStorage.setItem("rl_days",JSON.stringify(days))}catch(e){}}}
@@ -517,5 +565,12 @@ $("#remH").innerHTML=Array.from({length:17},(_,i)=>`<option value="${i+6}">${Str
 document.querySelectorAll("#remSeg button").forEach(b=>b.onclick=()=>{rem.on=b.dataset.r==="1";remSave();remUI();remApply(true)});
 $("#remH").onchange=()=>{rem.h=+$("#remH").value;remSave();if(rem.on)remApply(true)};
 remUI();if(rem.on)remApply(false);
+let maxH=innerHeight;
+const isField=e=>!!(e&&e.matches&&e.matches("input:not([type=checkbox]):not([type=file]):not([type=radio]),textarea"));
+const kbOn=()=>document.body.classList.add("kb"),kbOff=()=>document.body.classList.remove("kb");
+document.addEventListener("focusin",e=>{if(isField(e.target)){kbOn();setTimeout(()=>{try{e.target.scrollIntoView({block:"nearest",behavior:"smooth"})}catch(x){}},320)}});
+document.addEventListener("focusout",()=>setTimeout(()=>{if(!isField(document.activeElement))kbOff()},150));
+document.addEventListener("pointerdown",e=>{if(document.body.classList.contains("kb")&&!isField(e.target)&&!e.target.closest("#dxChk,#dxShow,#dxPlay,#dxSlow")&&isField(document.activeElement))document.activeElement.blur()});
+window.addEventListener("resize",()=>{if(innerHeight>maxH)maxH=innerHeight;if(innerHeight>=maxH-90){kbOff();if(isField(document.activeElement))document.activeElement.blur()}else if(isField(document.activeElement))kbOn()});
 render();updFc();show(user?"home":"login");
 </script></body></html>
