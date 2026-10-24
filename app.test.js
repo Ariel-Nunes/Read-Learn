@@ -26,8 +26,8 @@ const openText = async (pg, level = 0, idx = 0) => { await tab(pg, 'lib'); await
 const saveWords = (pg, n) => pg.evaluate(n => { const ws = dictPool(false).slice(0, n); saved[cur.id] = {}; ws.forEach(k => saved[cur.id][k] = trOf(k)); persist(); }, n);
 const hover = (pg, i) => pg.evaluate(i => document.querySelectorAll('#txt .w')[i].dispatchEvent(new Event('mouseenter')), i);
 
-async function test(name, fn, vp = { width: 390, height: 844 }, setup = true) {
-  const ctx = await browser.newContext({ viewport: vp });
+async function test(name, fn, vp = { width: 390, height: 844 }, setup = true, scheme = 'light') {
+  const ctx = await browser.newContext({ viewport: vp, colorScheme: scheme });
   const pg = await ctx.newPage(); const errs = [];
   pg.setDefaultTimeout(8000);
   pg.on('pageerror', e => errs.push(e.message));
@@ -123,6 +123,32 @@ async function test(name, fn, vp = { width: 390, height: 844 }, setup = true) {
     ok((await pg.$eval('#libGo', e => e.innerText)).includes('Próximo texto'), 'sugere o próximo texto após concluir');
   });
 
+  await test('Exercícios com identidade visual própria (Pronúncia, Ditado, Flashcards)', async pg => {
+    await openText(pg); await saveWords(pg, 6); await tab(pg, 'prac'); await wait(pg, 200);
+    const bg = sel => pg.$eval(sel, e => getComputedStyle(e).backgroundImage + '|' + getComputedStyle(e).backgroundColor);
+    await pg.evaluate(() => document.querySelector('#prac .gcard[data-g=pron]').click()); await wait(pg, 400);
+    ok(await pg.$('#pron .xban.x-pron') !== null, 'banner da Pronúncia'); const a = await bg('#pron .xban');
+    await tab(pg, 'prac'); await wait(pg, 200);
+    await pg.evaluate(() => document.querySelector('#prac .gcard[data-g=dict]').click()); await wait(pg, 500);
+    ok(await pg.$('#dict .xban.x-dict') !== null, 'banner do Ditado'); const b = await bg('#dict .xban');
+    ok(await pg.$('#dict .dxstage') !== null, 'palco escuro do Ditado');
+    ok(a !== b, 'Pronúncia e Ditado têm cores diferentes');
+    await tab(pg, 'prac'); await wait(pg, 200);
+    await pg.evaluate(() => document.querySelector('#prac .gcard[data-g=cards]').click()); await wait(pg, 400);
+    ok(await pg.$('#decks .xban.x-card') !== null, 'banner dos Flashcards'); ok(await pg.$('#decks .stk3') !== null, 'pilha de cartas no baralho');
+    await click(pg, '.dk'); await wait(pg, 500);
+    ok(await pg.evaluate(() => document.querySelector('#cd').getBoundingClientRect().height) > 200, 'cartão do flashcard com altura normal');
+  });
+
+  await test('Ditado no tema escuro não usa blocos brancos', async pg => {
+    await openText(pg); await tab(pg, 'prac'); await wait(pg, 200);
+    await pg.evaluate(() => document.querySelector('#prac .gcard[data-g=dict]').click()); await wait(pg, 600);
+    const css = sel => pg.$eval(sel, e => getComputedStyle(e).backgroundImage + ' ' + getComputedStyle(e).backgroundColor);
+    for (const sel of ['#dict .xban', '#dict .dxstage']) { const c = await css(sel); ok(!/255, 255, 255/.test(c), sel + ' ficou branco: ' + c); }
+    await tab(pg, 'prac'); await wait(pg, 200);
+    const t2 = await css('#prac .ptile.t2'); ok(!/255, 255, 255/.test(t2), 'bloco do Ditado em Praticar ficou branco');
+  }, undefined, true, 'dark');
+
   await test('Palavras: lista com Último texto / Todas as palavras e sem botão Praticar', async pg => {
     await openText(pg); await saveWords(pg, 4); await openText(pg, 0, 1); await saveWords(pg, 3);
     await tab(pg, 'words'); await wait(pg, 250);
@@ -131,6 +157,16 @@ async function test(name, fn, vp = { width: 390, height: 844 }, setup = true) {
     eq(await pg.$$eval('#wlist .item', e => e.length), 3, 'palavras do último texto');
     await pg.evaluate(() => document.querySelectorAll('#wSeg button')[1].click()); await wait(pg, 200);
     eq(await pg.$$eval('#wlist .item', e => e.length), 7, 'todas as palavras');
+  });
+
+  await test('Praticar: resumo do dia, texto escolhido e quatro exercícios', async pg => {
+    await openText(pg); await saveWords(pg, 10); await tab(pg, 'prac'); await wait(pg, 300);
+    ok(await pg.$('.phero') !== null, 'cartão de treino de hoje');
+    eq((await pg.$$eval('#prac .ptile', e => e.map(x => x.dataset.g))).join(','), 'pron,dict,cards,games', 'exercícios');
+    ok((await pg.$eval('.phero', e => e.innerText)).includes('para revisar'), 'palavras para revisar no resumo');
+    ok(await pg.$('.ptc select') !== null, 'seletor de texto');
+    await click(pg, '#phGo'); await wait(pg, 400);
+    eq(await pg.$eval('#ttl', e => e.textContent), 'Treino', 'o botão Revisar abre o treino');
   });
 
   await test('Texto de treino: padrão em ordem, texto aberto e troca manual', async pg => {
@@ -193,9 +229,9 @@ async function test(name, fn, vp = { width: 390, height: 844 }, setup = true) {
     await openText(pg); await saveWords(pg, 3); await tab(pg, 'prac');
     await pg.evaluate(() => document.querySelector('#prac .gcard[data-g=games]').click()); await wait(pg, 250);
     ok((await pg.$eval('#prac', e => e.innerText)).includes('Salve mais palavras'), 'aviso');
-    await saveWords(pg, 16); await click(pg, '#gBack'); await wait(pg, 150);
+    await saveWords(pg, 16); await click(pg, '#back'); await wait(pg, 150);
     await pg.evaluate(() => document.querySelector('#prac .gcard[data-g=games]').click()); await wait(pg, 250);
-    eq(await pg.$$eval('#prac .gcard', e => e.length), 4, 'jogos no menu');
+    eq(await pg.$$eval('#prac .gcard', e => e.length), 4, 'jogos no menu'); ok(await pg.$('#prac .xban.x-game') !== null, 'faixa dos jogos');
   });
 
   const toGame = async (pg, g) => { await openText(pg); await saveWords(pg, 16); await tab(pg, 'prac');
