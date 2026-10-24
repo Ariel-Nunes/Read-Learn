@@ -22,7 +22,7 @@ const click = (pg, s) => pg.evaluate(x => document.querySelector(x).click(), s);
 const tab = (pg, t) => pg.evaluate(x => document.querySelector('nav button[data-t=' + x + ']').click(), t);
 const wait = (pg, ms = 300) => pg.waitForTimeout(ms);
 const login = async pg => { await pg.fill('#nm', 'Teste'); await click(pg, '#enter'); await wait(pg); await click(pg, '#tskip'); };
-const openText = async (pg, level = 0, idx = 0) => { await pg.evaluate(l => document.querySelectorAll('.lvt')[l].click(), level); await pg.evaluate(i => document.querySelectorAll('.tc')[i].click(), idx); await wait(pg, 500); };
+const openText = async (pg, level = 0, idx = 0) => { await tab(pg, 'lib'); await wait(pg, 200); await pg.evaluate(l => { const t = document.querySelectorAll('.lvt')[l]; if (!t.classList.contains('on')) t.click(); }, level); await pg.evaluate(i => document.querySelectorAll('.tc')[i].click(), idx); await wait(pg, 500); };
 const saveWords = (pg, n) => pg.evaluate(n => { const ws = dictPool(false).slice(0, n); saved[cur.id] = {}; ws.forEach(k => saved[cur.id][k] = trOf(k)); persist(); }, n);
 const hover = (pg, i) => pg.evaluate(i => document.querySelectorAll('#txt .w')[i].dispatchEvent(new Event('mouseenter')), i);
 
@@ -60,11 +60,14 @@ async function test(name, fn, vp = { width: 390, height: 844 }, setup = true) {
     eq(miss.length, 0, 'palavras sem tradução (' + miss.slice(0, 5).join(', ') + ')');
   }, undefined, false);
 
-  await test('Tela inicial: saudação, meta, níveis e 10 textos por nível', async pg => {
+  await test('Início enxuto e Biblioteca com níveis e 10 textos por nível', async pg => {
     ok((await pg.$eval('#hi', e => e.textContent)).includes('Seja bem-vindo(a)'), 'saudação');
+    ok(await pg.$('#goal') !== null, 'cartão da meta'); ok(await pg.$('#cont2 .hc') !== null, 'cartão continuar');
+    eq(await pg.$$eval('.lvt', e => e.length), 0, 'níveis não ficam mais no início');
+    await tab(pg, 'lib'); await wait(pg, 250);
+    eq(await pg.$eval('#ttl', e => e.textContent), 'Biblioteca', 'título da biblioteca');
     eq(await pg.$$eval('.lvt', e => e.length), 4, 'níveis');
-    ok(await pg.$('#goal') !== null, 'cartão da meta');
-    eq(await pg.$$eval('.tc', e => e.length), 0, 'textos antes de escolher nível');
+    eq(await pg.$$eval('.tc', e => e.length), 0, 'textos antes de escolher o nível');
     await pg.evaluate(() => document.querySelectorAll('.lvt')[2].click());
     eq(await pg.$$eval('.tc', e => e.length), 10, 'textos do nível');
   });
@@ -94,16 +97,70 @@ async function test(name, fn, vp = { width: 390, height: 844 }, setup = true) {
     ok(last !== '«stop»' && last.length < full, 'retomou no meio do texto');
   });
 
-  await test('Botão Ler: mensagem sem texto e volta ao último texto', async pg => {
-    await tab(pg, 'read'); await wait(pg, 200);
-    eq(await pg.$eval('#toast', e => e.textContent), 'Selecione um texto', 'mensagem');
+  await test('Barra fixa: Início, Ler, Palavras, Praticar', async pg => {
+    eq((await pg.$$eval('nav button', e => e.map(b => b.dataset.t))).join(','), 'home,lib,words,prac', 'abas');
+    const on = () => pg.$eval('nav button.on', e => e.dataset.t), ttl = () => pg.$eval('#ttl', e => e.textContent);
+    eq(await on(), 'home', 'aba ativa no início');
+    await tab(pg, 'lib'); await wait(pg, 200); eq(await on(), 'lib', 'aba Ler'); eq(await ttl(), 'Biblioteca', 'título Ler');
+    await openText(pg); eq(await on(), 'lib', 'aba durante a leitura');
+    await tab(pg, 'words'); await wait(pg, 200); eq(await on(), 'words', 'aba Palavras'); eq(await ttl(), 'Palavras', 'título Palavras');
+    await tab(pg, 'prac'); await wait(pg, 200); eq(await on(), 'prac', 'aba Praticar'); eq(await ttl(), 'Praticar', 'título Praticar');
+    await tab(pg, 'home'); await wait(pg, 200); eq(await on(), 'home', 'volta ao Início');
+    eq(await pg.$eval('nav', e => getComputedStyle(e).display), 'flex', 'barra visível');
+  });
+
+  await test('Biblioteca: banner "Continuar leitura" leva ao último texto', async pg => {
+    await tab(pg, 'lib'); await wait(pg, 200);
+    eq(await pg.$('#libGo'), null, 'sem banner antes de abrir um texto');
     await openText(pg, 1, 2); const t = await pg.$eval('#ttl', e => e.textContent);
-    await click(pg, '#back'); await wait(pg); await tab(pg, 'read'); await wait(pg, 400);
-    eq(await pg.$eval('#ttl', e => e.textContent), t, 'texto de volta');
+    await tab(pg, 'prac'); await wait(pg, 200); await tab(pg, 'lib'); await wait(pg, 300);
+    const txt = await pg.$eval('#libGo', e => e.innerText);
+    ok(txt.includes('Continuar leitura'), 'texto do banner'); ok(txt.includes(t), 'título do último texto');
+    await click(pg, '#libGo'); await wait(pg, 400);
+    eq(await pg.$eval('#ttl', e => e.textContent), t, 'abre o último texto');
+    ok(await pg.evaluate(() => !document.querySelector('#read').hidden), 'na leitura');
+    await click(pg, '#finBtn'); await wait(pg, 300); await tab(pg, 'lib'); await wait(pg, 300);
+    ok((await pg.$eval('#libGo', e => e.innerText)).includes('Próximo texto'), 'sugere o próximo texto após concluir');
+  });
+
+  await test('Palavras: lista com Último texto / Todas as palavras e sem botão Praticar', async pg => {
+    await openText(pg); await saveWords(pg, 4); await openText(pg, 0, 1); await saveWords(pg, 3);
+    await tab(pg, 'words'); await wait(pg, 250);
+    eq(await pg.$('#wPrac'), null, 'botão Praticar removido de Palavras');
+    eq((await pg.$$eval('#wSeg button', e => e.map(b => b.textContent))).join('|'), 'Último texto|Todas as palavras', 'divisão');
+    eq(await pg.$$eval('#wlist .item', e => e.length), 3, 'palavras do último texto');
+    await pg.evaluate(() => document.querySelectorAll('#wSeg button')[1].click()); await wait(pg, 200);
+    eq(await pg.$$eval('#wlist .item', e => e.length), 7, 'todas as palavras');
+  });
+
+  await test('Texto de treino: padrão em ordem, texto aberto e troca manual', async pg => {
+    await tab(pg, 'prac'); await wait(pg, 200);
+    eq(await pg.$eval('#ptSel', e => e.value), 't01', 'sem histórico usa o primeiro texto');
+    await pg.evaluate(() => { doneT = { t01: 1, t02: 1 }; localStorage.setItem('rl_done', JSON.stringify(doneT)); }); await pg.reload(); await wait(pg, 400);
+    await tab(pg, 'prac'); await wait(pg, 200);
+    eq(await pg.$eval('#ptSel', e => e.value), 't03', 'sem texto aberto usa o próximo da fila');
+    await openText(pg, 0, 4); await tab(pg, 'prac'); await wait(pg, 200);
+    eq(await pg.$eval('#ptSel', e => e.value), 't05', 'usa o texto aberto na sessão');
+    await pg.evaluate(() => { const s = document.querySelector('#ptSel'); s.value = 't12'; s.dispatchEvent(new Event('change')); }); await wait(pg, 200);
+    await pg.evaluate(() => document.querySelector('#prac .gcard[data-g=dict]').click()); await wait(pg, 500);
+    eq(await pg.evaluate(() => cur.id + '/' + dx.id), 't12/t12', 'Ditado usa o texto escolhido');
+  });
+
+  await test('Texto concluído: treinar este texto e próximo texto no Início', async pg => {
+    await openText(pg); await click(pg, '#finBtn'); await wait(pg, 300);
+    eq(await pg.$eval('#ttl', e => e.textContent), 'Concluído', 'tela de conclusão');
+    ok(await pg.$('#dPr') !== null && await pg.$('#dDi') !== null && await pg.$('#dLs') !== null, 'botões da conclusão');
+    await click(pg, '#dPr'); await wait(pg, 400);
+    eq(await pg.evaluate(() => cur.id + '/' + !document.querySelector('#pron').hidden), 't01/true', 'Pronúncia deste texto');
+    await tab(pg, 'home'); await wait(pg, 300);
+    ok((await pg.$eval('#cont2', e => e.innerText)).includes('Próximo texto'), 'Início sugere o próximo texto');
+    await click(pg, '#goCont'); await wait(pg, 400);
+    eq(await pg.$eval('#ttl', e => e.textContent), 'The Missing Wallet', 'abre o próximo texto');
   });
 
   await test('Flashcards: baralho, treino e revisão espaçada', async pg => {
-    await openText(pg); await saveWords(pg, 3); await tab(pg, 'cards'); await wait(pg);
+    await openText(pg); await saveWords(pg, 3); await tab(pg, 'prac'); await wait(pg);
+    await pg.evaluate(() => document.querySelector('#prac .gcard[data-g=cards]').click()); await wait(pg, 300);
     eq(await pg.$$eval('.deck', e => e.length), 1, 'baralhos');
     await click(pg, '.dk'); await wait(pg, 400); await click(pg, '#cd'); await wait(pg, 200); await click(pg, '#ok'); await wait(pg, 800);
     eq(await pg.evaluate(() => Object.values(srs[cur.id])[0].b), 1, 'caixa da revisão espaçada');
@@ -221,7 +278,9 @@ async function test(name, fn, vp = { width: 390, height: 844 }, setup = true) {
     await pg.evaluate(() => __bk()); await wait(pg, 300);
     ok(await pg.$eval('#pop', e => e.style.display !== 'block'), 'fecha o painel');
     await pg.evaluate(() => __bk()); await wait(pg, 300);
-    eq(await pg.$eval('#ttl', e => e.textContent), 'Read & Learn', 'volta à tela inicial');
+    eq(await pg.$eval('#ttl', e => e.textContent), 'Biblioteca', 'da leitura volta à biblioteca');
+    await pg.evaluate(() => __bk()); await wait(pg, 300);
+    eq(await pg.$eval('#ttl', e => e.textContent), 'Read & Learn', 'da biblioteca volta ao início');
     await pg.evaluate(() => __bk()); eq(await pg.evaluate(() => __exit), 0, 'não sai no primeiro toque');
     await pg.evaluate(() => __bk()); eq(await pg.evaluate(() => __exit), 1, 'sai no segundo toque');
   });
@@ -229,7 +288,7 @@ async function test(name, fn, vp = { width: 390, height: 844 }, setup = true) {
   await test('Layout em 360 px: sem rolagem lateral e abas com tamanho de toque', async pg => {
     const side = async n => ok(await pg.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'rolagem lateral em ' + n);
     await side('início'); await openText(pg); await side('leitura');
-    for (const t of ['words', 'cards', 'prac']) { await tab(pg, t); await wait(pg, 400); await side(t); }
+    for (const t of ['words', 'prac', 'lib', 'home']) { await tab(pg, t); await wait(pg, 400); await side(t); }
     const w = await pg.$$eval('nav button', e => e.map(b => Math.round(b.getBoundingClientRect().width)));
     ok(w.every(x => x >= 44), 'largura das abas: ' + w.join(','));
     const h = await pg.$$eval('nav button', e => e.map(b => Math.round(b.getBoundingClientRect().height)));
